@@ -40,3 +40,7 @@ Thumbs.db
 ##########
 *.pyc
 __pycache__/
+
+# Data #
+########
+**/data/**
