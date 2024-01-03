@@ -9,3 +9,4 @@ conda env export | grep -v "^prefix: " > environment.yml
 git add . && git commit -m $1 && git push
 cd rrl
 git add . && git commit -m $1 && git push
+cd ..
