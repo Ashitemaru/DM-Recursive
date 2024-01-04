@@ -1,6 +1,6 @@
 import os
 import sys
-from sklearn.model_selection import KFold
+from sklearn.model_selection import KFold, train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.tree import DecisionTreeRegressor
 import xgboost as xgb
@@ -11,18 +11,13 @@ sys.path.append(os.path.join(current_path, "../.."))
 from utils import load_dataset
 from cart import RegressionTree
 
-CATEGORY = "news"
+CATEGORY = "wine"
 MAX_DEPTH = {
     "house": 10,
-    "wine": 5,
+    "wine": 10,
     "news": 8,
 }
-MAX_DEPTH_REF = {
-    "house": 10,
-    "wine": 4,
-    "news": 4,
-}
-USE_HANDCRAFT = False
+USE_HANDCRAFT = True
 
 
 def main():
@@ -61,7 +56,7 @@ def main():
         # Create model
         if USE_HANDCRAFT:
             model = RegressionTree(max_depth=MAX_DEPTH[CATEGORY])
-        ref_model = DecisionTreeRegressor(max_depth=MAX_DEPTH_REF[CATEGORY])
+        ref_model = DecisionTreeRegressor(max_depth=MAX_DEPTH[CATEGORY])
         xg_reg = xgb.XGBRegressor()
 
         # Train model
